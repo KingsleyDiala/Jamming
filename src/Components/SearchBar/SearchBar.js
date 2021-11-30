@@ -1,7 +1,6 @@
 
-
 import React from 'react';
-import ReactDom from 'react-dom';
+// import TrackList from '../TrackList/TrackList';
 
 
 export class SearchBar extends React.Component {
@@ -10,6 +9,7 @@ export class SearchBar extends React.Component {
       <div className="SearchResults">
       <h2>Results</h2>
       {/* <!-- Add a TrackList component --> */}
+      {/* <TrackList /> */}
     </div>
     );
   }

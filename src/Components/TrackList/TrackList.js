@@ -6,11 +6,15 @@ class TrackList extends React.Component {
   render() {
     return (
       <div className="TrackList">
-    {/* <!-- You will add a map method that renders a set of Track components  --> */}
-    <Track />
-</div> 
+        {
+          this.props.tracks.map(track => {
+            return <Track track={ track }
+                          key={ track.id } />   // key is used to identify each track
+          })
+        }
+      </div>
     );
   }
 }
 
-export default TrackList;
+  export default TrackList;

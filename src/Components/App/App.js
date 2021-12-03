@@ -18,6 +18,7 @@ class App extends React.Component {
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   }
 
   // Accepts a track, uses the track id property to check it's state and add to playlist if new
@@ -48,12 +49,18 @@ class App extends React.Component {
   }
 
 
+  // Accepts a search term and logs the term to the console
+  search(term) {
+    console.log(term);
+  }
+
+
   render() {
     return (
       <div>
   <h1>Ja<span className="highlight">mmm</span>ing</h1>
   <div className="App">
-    <SearchBar />
+    <SearchBar onSearch= { this.search } />
     <div className="App-playlist">
       <SearchResults searchResult={ this.state.searchResults } onAdd={ this.addTrack } />
       <Playlist playlist={ this.state.playlistTracks } removeTrack= { this.removeTrack } onNameChange= { this.updatePlaylistName } onSave= {this.savePlaylist } />

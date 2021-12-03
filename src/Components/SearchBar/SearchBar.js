@@ -1,16 +1,15 @@
 
 import React from 'react';
-// import TrackList from '../TrackList/TrackList';
+import './SearchBar.css'
 
 
 export class SearchBar extends React.Component {
   render() {
     return (
-      <div className="SearchResults">
-      <h2>Results</h2>
-      {/* <!-- Add a TrackList component --> */}
-      {/* <TrackList /> */}
-    </div>
+      <div class="SearchBar">
+  <input placeholder="Enter A Song, Album, or Artist" />
+  <button class="SearchButton">SEARCH</button>
+</div>
     );
   }
 }

@@ -15,6 +15,7 @@ class App extends React.Component {
       playlistTracks: [{name: 'Playlist-1', artist: 'PlaylistArtist-1', album: 'PlaylistAlbum-1', id: 6}, {name: 'Playlist-2', artist: 'PlaylistArtist-2', album: 'PlaylistAlbum-2', id: 7}, {name: 'Playlist-3', artist: 'PlaylistArtist-3', album: 'PlaylistAlbum-3', id: 8}, {name: 'Playlist-4', artist: 'PlaylistArtist-4', album: 'PlaylistAlbum-4', id: 9}, {Playlist: 'Playlist-5', artist: 'PlaylistArtist-5', album: 'PlaylistAlbum-5', id: 10}],
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
   // Accepts a track, uses the track id property to check it's state and add to playlist if new
@@ -28,6 +29,12 @@ class App extends React.Component {
     }
   }
 
+  removeTrack(track) {
+    let playlist = this.state.playlistTracks;
+    playlist = playlist.filter(currentTrack => currentTrack.id !== track.id);
+    this.setState({ playlistTracks: playlist })
+  }
+
 
   render() {
     return (
@@ -37,7 +44,7 @@ class App extends React.Component {
     <SearchBar />
     <div className="App-playlist">
       <SearchResults searchResult={ this.state.searchResults } onAdd={ this.addTrack } />
-      <Playlist playlist={ this.state.playlistTracks } />
+      <Playlist playlist={ this.state.playlistTracks } removeTrack= { this.removeTrack }/>
     </div>
   </div>
   </div>

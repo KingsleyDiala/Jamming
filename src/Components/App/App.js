@@ -17,6 +17,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
 
   // Accepts a track, uses the track id property to check it's state and add to playlist if new
@@ -41,6 +42,12 @@ class App extends React.Component {
   }
 
 
+  // Generates an array of uri values called trackURIs from the playlistTracks property.
+  savePlaylist() {
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+  }
+
+
   render() {
     return (
       <div>
@@ -49,7 +56,7 @@ class App extends React.Component {
     <SearchBar />
     <div className="App-playlist">
       <SearchResults searchResult={ this.state.searchResults } onAdd={ this.addTrack } />
-      <Playlist playlist={ this.state.playlistTracks } removeTrack= { this.removeTrack } onNameChange= { this.updatePlaylistName }/>
+      <Playlist playlist={ this.state.playlistTracks } removeTrack= { this.removeTrack } onNameChange= { this.updatePlaylistName } onSave= {this.savePlaylist } />
     </div>
   </div>
   </div>

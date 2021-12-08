@@ -10,10 +10,10 @@ class App extends React.Component {
     super(props);
     this.state = { 
       // Search Result object
-      searchResults: [{name: 'name-1', artist: 'artist-1', album: 'album-1', id: 1}, {name: 'name-2', artist: 'artist-2', album: 'album-2', id: 2}, {name: 'name-3', artist: 'artist-3', album: 'album-3', id: 3}, {name: 'name-4', artist: 'artist-4', album: 'album-4', id: 4}, {name: 'name-5', artist: 'artist-5', album: 'album-5', id: 5}],
+      searchResults: [],
       PlaylistName: 'My Playlist',
       // Playlist Object
-      playlistTracks: [{name: 'Playlist-1', artist: 'PlaylistArtist-1', album: 'PlaylistAlbum-1', id: 6}, {name: 'Playlist-2', artist: 'PlaylistArtist-2', album: 'PlaylistAlbum-2', id: 7}, {name: 'Playlist-3', artist: 'PlaylistArtist-3', album: 'PlaylistAlbum-3', id: 8}, {name: 'Playlist-4', artist: 'PlaylistArtist-4', album: 'PlaylistAlbum-4', id: 9}, {name: 'Playlist-5', artist: 'PlaylistArtist-5', album: 'PlaylistAlbum-5', id: 10}],
+      playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -47,13 +47,17 @@ class App extends React.Component {
   // Generates an array of uri values called trackURIs from the playlistTracks property.
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    return Spotify.savePlaylist(this.state.playlistTracks, trackURIs)
+    .then( () => {
+      this.setState({ PlaylistName: 'New Playlist', playlistTracks: [] })
+    })
   }
 
 
-  // Accepts a search term and logs the term to the console
+  // Accepts a search term, update searchResults state.
   search(term) {
-    Spotify.search(term).then(searchResults => {
-      this.setState({ searchResults: searchResults })
+    Spotify.search(term).then(response => {
+      this.setState({ searchResults: response })
     })
   }
 
